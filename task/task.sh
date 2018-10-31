@@ -19,6 +19,10 @@ DESTINATION=${DESTINATION:?'DESTINATION environment variable missing.'}
 
 ARGS_STRING="--quiet --source \"${SOURCE}\" --destination \"${DESTINATION}\""
 
+if [ -d "${SOURCE}" ]; then
+  ARGS_STRING="${ARGS_STRING} --recursive"
+fi
+
 if [ ! -z "${SOURCE_SAS_TOKEN}" ]; then
   ARGS_STRING="${ARGS_STRING} --source-sas \"${SOURCE_SAS_TOKEN}\""
 fi
