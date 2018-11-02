@@ -10,14 +10,24 @@
 #   SOURCE_SAS_TOKEN
 #   DESTINATION_SAS_TOKEN
 #   EXTRA_ARGS
+#   DEBUG
 
 source "$(dirname "$0")/common.sh"
+
+enable_debug
 
 # mandatory parameters
 SOURCE=${SOURCE:?'SOURCE environment variable missing.'}
 DESTINATION=${DESTINATION:?'DESTINATION environment variable missing.'}
 
+debug SOURCE: "${SOURCE}"
+debug DESTINATION: "${DESTINATION}"
+
 ARGS_STRING="--quiet --source \"${SOURCE}\" --destination \"${DESTINATION}\""
+
+if [[ "${DEBUG}" == "true" ]]; then
+  ARGS_STRING="${ARGS_STRING} --verbose"
+fi
 
 if [ -d "${SOURCE}" ]; then
   ARGS_STRING="${ARGS_STRING} --recursive"
@@ -32,6 +42,8 @@ if [ ! -z "${DESTINATION_SAS_TOKEN}" ]; then
 fi
 
 ARGS_STRING="${ARGS_STRING} ${EXTRA_ARGS:=""}"
+
+debug ARGS_STRING: "${ARGS_STRING}"
 
 info "Starting deployment to Azure storage..."
 

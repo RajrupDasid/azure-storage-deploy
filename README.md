@@ -11,12 +11,13 @@ Automatically adds the "--recursive" option if the source is a directory on the 
 Add the following snippet to the script section of your `bitbucket-pipelines.yml` file:
 
 ```yaml
-- task: atlassian/azure-storage-deploy:0.3.0
+- task: atlassian/azure-storage-deploy:0.4.0
   environment:
-    SOURCE: <string>
-    DESTINATION: <string>
+    SOURCE: "<string>"
+    DESTINATION: "<string>"
     DESTINATION_SAS_TOKEN: "${AZURE_STORAGE_SAS_TOKEN}"
-    # EXTRA_ARGS: <string>
+    # EXTRA_ARGS: "<string>"
+    # DEBUG: "<boolean>"
 ```
 
 ## Parameters
@@ -24,10 +25,11 @@ Add the following snippet to the script section of your `bitbucket-pipelines.yml
 | Environment                   | Usage                                                |
 | ----------------------------- | ---------------------------------------------------- |
 | SOURCE (*)                    |  The source of the files to copy. This will normally be the path to a file or directory on the local filesystem where the task is executing but it can alternatively be an Azure Storage resource URI. |
-| SOURCE_SAS_TOKEN              |  A [SAS token](https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1) for authenticating against the source (not needed in the usual case where the source is a local path). |
 | DESTINATION (*)               |  The file copy destination. This will normally be a [Blob Resource URI](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#resource-uri-syntax) or [File Resource URI](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata#resource-uri-syntax) but it can alternatively be a path on the local filesystem where the task is executing. |
 | DESTINATION_SAS_TOKEN         |  A [SAS token](https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1) for authenticating against the destination (not needed if the destination is a local path). |
+| SOURCE_SAS_TOKEN              |  A [SAS token](https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1) for authenticating against the source (not needed in the usual case where the source is a local path). |
 | EXTRA_ARGS                    |  Extra arguments to be passed to the azcopy command (see [azcopy docs](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-linux) for more details). |
+| DEBUG                         |  If equal to "true", outputs extra information to help debug issues running this task. |
 
 _(*) = required parameter._
 
@@ -39,7 +41,7 @@ Basic example:
 
 ```yaml
 script:
-  - task: atlassian/azure-storage-deploy:0.3.0
+  - task: atlassian/azure-storage-deploy:0.4.0
     environment:
       SOURCE: "myfile"
       DESTINATION: "https://mystorageaccount.blob.core.windows.net/mycontainer/myfile"
@@ -50,12 +52,13 @@ Advanced example:
     
 ```yaml
 script:
-  - task: atlassian/azure-storage-deploy:0.3.0
+  - task: atlassian/azure-storage-deploy:0.4.0
     environment:
       SOURCE: "mydirectory"
       DESTINATION: "https://mystorageaccount.blob.core.windows.net/mycontainer/mydirectory"
       DESTINATION_SAS_TOKEN: "${AZURE_STORAGE_SAS_TOKEN}"
       EXTRA_ARGS: "--exclude-older --preserve-last-modified-time"
+      DEBUG: "true"
 ```
 
 ## Bugs
