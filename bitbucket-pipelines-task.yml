@@ -1,2 +1,2 @@
 key: atlassian/azure-storage-deploy
-image: bitbucketpipelines/azure-storage-deploy:0.3.0
+image: bitbucketpipelines/azure-storage-deploy:0.4.0

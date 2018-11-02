@@ -25,6 +25,10 @@ debug DESTINATION: "${DESTINATION}"
 
 ARGS_STRING="--quiet --source \"${SOURCE}\" --destination \"${DESTINATION}\""
 
+if [[ "${DEBUG}" == "true" ]]; then
+  ARGS_STRING="${ARGS_STRING} --verbose"
+fi
+
 if [ -d "${SOURCE}" ]; then
   ARGS_STRING="${ARGS_STRING} --recursive"
 fi
