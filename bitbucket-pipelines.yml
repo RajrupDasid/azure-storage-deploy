@@ -11,7 +11,6 @@ test: &test
     - export DOCKERHUB_TAG=${BITBUCKET_BUILD_NUMBER}
     - echo "Building image..."
     - docker build -t ${DOCKERHUB_IMAGE}:${DOCKERHUB_TAG} .
-    - test/simple-test.sh
     - echo "Testing image..."
     - test/test.bats
     services:
