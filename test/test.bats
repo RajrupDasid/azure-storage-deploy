@@ -1,6 +1,6 @@
 #!/usr/bin/env bats
 
-# Test GCP storage, https://cloud.google.com/storage/
+# Test Azure Storage
 
 set -e
 
@@ -22,7 +22,7 @@ teardown() {
   rm -rf $LOCAL_DIR
 }
 
-@test "upload to GCP storage" {
+@test "upload to Azure Storage" {
   # execute tests
   run docker run \
     -e SOURCE="${LOCAL_DIR}" \
