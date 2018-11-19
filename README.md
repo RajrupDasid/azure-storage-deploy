@@ -2,16 +2,12 @@
 
 Task to deploy to [Microsoft Azure Storage](https://azure.microsoft.com/services/storage/).
 
-Copies files and directories to Azure Blob or File storage
-using [AzCopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-linux).
-Automatically adds the "--recursive" option if the source is a directory on the local filesystem.
-
-## Usage
+## YAML Definition
 
 Add the following snippet to the script section of your `bitbucket-pipelines.yml` file:
 
 ```yaml
-- task: atlassian/azure-storage-deploy:0.4.0
+- task: atlassian/azure-storage-deploy:0.4.1
   environment:
     SOURCE: "<string>"
     DESTINATION: "<string>"
@@ -35,24 +31,30 @@ _(*) = required parameter._
 
 More info about parameters and values can be found in the Azure official documentation: https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-linux
 
+## Details
+
+Copies files and directories to Azure Blob or File storage
+using [AzCopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-linux).
+Automatically adds the "--recursive" option if the source is a directory on the local filesystem.
+
 ## Examples
 
-Basic example:
+### Basic example:
 
 ```yaml
 script:
-  - task: atlassian/azure-storage-deploy:0.4.0
+  - task: atlassian/azure-storage-deploy:0.4.1
     environment:
       SOURCE: "myfile"
       DESTINATION: "https://mystorageaccount.blob.core.windows.net/mycontainer/myfile"
       DESTINATION_SAS_TOKEN: "${AZURE_STORAGE_SAS_TOKEN}"
 ```
 
-Advanced example: 
+### Advanced example: 
     
 ```yaml
 script:
-  - task: atlassian/azure-storage-deploy:0.4.0
+  - task: atlassian/azure-storage-deploy:0.4.1
     environment:
       SOURCE: "mydirectory"
       DESTINATION: "https://mystorageaccount.blob.core.windows.net/mycontainer/mydirectory"
