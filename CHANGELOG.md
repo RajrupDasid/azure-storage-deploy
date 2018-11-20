@@ -1,6 +1,10 @@
 # Changelog
 During the Alpha period, minor version releases in the 0.x.y range may introduce breaking changes to the task's interface. 
 
+## [0.4.2] - 2018-11-19
+### Changed
+Move details to summary.
+
 ## [0.4.1] - 2018-11-19
 ### Changed
 Restructure README.md to match user flow.
