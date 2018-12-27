@@ -1,0 +1,6 @@
+[
+  {
+    "type": "minor",
+    "description": "Automatically add the --recursive option to the azcopy command if the source is a local directory."
+  }
+]
