@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#
 # Release to dockerhub.
 #
 # On master, we push both a :latest tag, and :<next-version>
@@ -13,11 +13,11 @@
 #
 # Arguments:
 #   REPOSITORY: The dockerhub repository we are pushing to.
-
+#
 set -ex
 
 REPOSITORY=$1
-VERSION=$(cat next.version)
+VERSION=$(semversioner current-version)
 
 # Login to dockerhub.
 docker_login() {

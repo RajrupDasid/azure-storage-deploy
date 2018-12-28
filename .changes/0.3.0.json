@@ -1,0 +1,6 @@
+[
+  {
+    "type": "minor",
+    "description": "Fixed the version number in the pipe definition yaml and documentation."
+  }
+]

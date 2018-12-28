@@ -17,6 +17,6 @@ RUN cd /root && \
     apt-get update && \
     apt-get -y install azcopy
 
-COPY task /usr/bin/
+COPY pipe /usr/bin/
 
-ENTRYPOINT ["/usr/bin/task.sh"]
+ENTRYPOINT ["/usr/bin/pipe.sh"]

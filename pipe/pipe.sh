@@ -17,8 +17,8 @@ source "$(dirname "$0")/common.sh"
 enable_debug
 
 # mandatory parameters
-SOURCE=${SOURCE:?'SOURCE environment variable missing.'}
-DESTINATION=${DESTINATION:?'DESTINATION environment variable missing.'}
+SOURCE=${SOURCE:?'SOURCE variable missing.'}
+DESTINATION=${DESTINATION:?'DESTINATION variable missing.'}
 
 debug SOURCE: "${SOURCE}"
 debug DESTINATION: "${DESTINATION}"
