@@ -19,7 +19,7 @@ Add the following snippet to the script section of your `bitbucket-pipelines.yml
     # DEBUG: "<boolean>"
 ```
 
-## Parameters
+## Variables
 
 | Variable                   | Usage                                                |
 | ----------------------------- | ---------------------------------------------------- |
@@ -30,7 +30,7 @@ Add the following snippet to the script section of your `bitbucket-pipelines.yml
 | EXTRA_ARGS                    |  Extra arguments to be passed to the azcopy command (see [azcopy docs](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-linux) for more details). |
 | DEBUG                         |  If equal to "true", outputs extra information to help debug issues running this pipe. |
 
-_(*) = required parameter._
+_(*) = required variable._
 
 More info about parameters and values can be found in the Azure official documentation: https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-linux
 
