@@ -14,9 +14,10 @@ Add the following snippet to the script section of your `bitbucket-pipelines.yml
   variables:
     SOURCE: "<string>"
     DESTINATION: "<string>"
-    DESTINATION_SAS_TOKEN: "${AZURE_STORAGE_SAS_TOKEN}"
-    # EXTRA_ARGS: "<string>"
-    # DEBUG: "<boolean>"
+    # DESTINATION_SAS_TOKEN: "<string>" # Optional.
+    # SOURCE_SAS_TOKEN: "<string>" # Optional.
+    # EXTRA_ARGS: "<string>" # Optional.
+    # DEBUG: "<boolean>" # Optional.
 ```
 
 ## Variables
@@ -28,7 +29,7 @@ Add the following snippet to the script section of your `bitbucket-pipelines.yml
 | DESTINATION_SAS_TOKEN         |  A [SAS token](https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1) for authenticating against the destination (not needed if the destination is a local path). |
 | SOURCE_SAS_TOKEN              |  A [SAS token](https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1) for authenticating against the source (not needed in the usual case where the source is a local path). |
 | EXTRA_ARGS                    |  Extra arguments to be passed to the azcopy command (see [azcopy docs](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-linux) for more details). |
-| DEBUG                         |  If equal to "true", outputs extra information to help debug issues running this pipe. |
+| DEBUG                         |  Turn on extra debug information. Default: `false`. |
 
 _(*) = required variable._
 
