@@ -1,22 +1,31 @@
 # Changelog
-During the Alpha period, minor version releases in the 0.x.y range may introduce breaking changes to the pipes's interface. 
+Note: version releases in the 0.x.y range may introduce breaking changes.
 
-## [0.4.2] - 2018-11-19
-### Changed
-Move details to summary.
+## 0.5.0
 
-## [0.4.1] - 2018-11-19
-### Changed
-Restructure README.md to match user flow.
+- minor: Switch naming conventions from task to pipes.
 
-## [0.4.0] - 2018-11-02
-Added DEBUG option.
+## 0.4.2
 
-## [0.3.0] - 2018-11-02
-Fixed the version number in the pipe definition yaml and documentation.
+- patch: Move details to summary.
 
-## [0.2.0] - 2018-10-25
-Automatically add the --recursive option to the azcopy command if the source is a local directory.
+## 0.4.1
 
-## [0.1.0] - 2018-10-25
-Initial release of Bitbucket Pipelines Azure Storage deploy pipe.
+- patch: Restructure README.md to match user flow.
+
+## 0.4.0
+
+- minor: Added DEBUG option.
+
+## 0.3.0
+
+- minor: Fixed the version number in the pipe definition yaml and documentation.
+
+## 0.2.0
+
+- minor: Automatically add the --recursive option to the azcopy command if the source is a local directory.
+
+## 0.1.0
+
+- minor: Initial release of Bitbucket Pipelines Azure Storage deploy pipe.
+

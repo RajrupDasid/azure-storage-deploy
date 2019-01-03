@@ -10,7 +10,7 @@ Automatically adds the "--recursive" option if the source is a directory on the 
 Add the following snippet to the script section of your `bitbucket-pipelines.yml` file:
 
 ```yaml
-- pipe: atlassian/azure-storage-deploy:0.4.2
+- pipe: atlassian/azure-storage-deploy:0.5.0
   variables:
     SOURCE: "<string>"
     DESTINATION: "<string>"
@@ -41,7 +41,7 @@ More info about parameters and values can be found in the Azure official documen
 
 ```yaml
 script:
-  - pipe: atlassian/azure-storage-deploy:0.4.2
+  - pipe: atlassian/azure-storage-deploy:0.5.0
     variables:
       SOURCE: "myfile"
       DESTINATION: "https://mystorageaccount.blob.core.windows.net/mycontainer/myfile"
@@ -52,7 +52,7 @@ script:
     
 ```yaml
 script:
-  - pipe: atlassian/azure-storage-deploy:0.4.2
+  - pipe: atlassian/azure-storage-deploy:0.5.0
     variables:
       SOURCE: "mydirectory"
       DESTINATION: "https://mystorageaccount.blob.core.windows.net/mycontainer/mydirectory"
