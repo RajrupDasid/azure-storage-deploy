@@ -12,12 +12,12 @@ Add the following snippet to the script section of your `bitbucket-pipelines.yml
 ```yaml
 - pipe: atlassian/azure-storage-deploy:0.5.0
   variables:
-    SOURCE: "<string>"
-    DESTINATION: "<string>"
-    # DESTINATION_SAS_TOKEN: "<string>" # Optional.
-    # SOURCE_SAS_TOKEN: "<string>" # Optional.
-    # EXTRA_ARGS: "<string>" # Optional.
-    # DEBUG: "<boolean>" # Optional.
+    SOURCE: '<string>'
+    DESTINATION: '<string>'
+    # DESTINATION_SAS_TOKEN: '<string>' # Optional.
+    # SOURCE_SAS_TOKEN: '<string>' # Optional.
+    # EXTRA_ARGS: '<string>' # Optional.
+    # DEBUG: '<boolean>' # Optional.
 ```
 
 ## Variables
@@ -43,9 +43,9 @@ More info about parameters and values can be found in the Azure official documen
 script:
   - pipe: atlassian/azure-storage-deploy:0.5.0
     variables:
-      SOURCE: "myfile"
-      DESTINATION: "https://mystorageaccount.blob.core.windows.net/mycontainer/myfile"
-      DESTINATION_SAS_TOKEN: "${AZURE_STORAGE_SAS_TOKEN}"
+      SOURCE: 'myfile'
+      DESTINATION: 'https://mystorageaccount.blob.core.windows.net/mycontainer/myfile'
+      DESTINATION_SAS_TOKEN: ${AZURE_STORAGE_SAS_TOKEN}
 ```
 
 ### Advanced example: 
@@ -54,16 +54,16 @@ script:
 script:
   - pipe: atlassian/azure-storage-deploy:0.5.0
     variables:
-      SOURCE: "mydirectory"
-      DESTINATION: "https://mystorageaccount.blob.core.windows.net/mycontainer/mydirectory"
-      DESTINATION_SAS_TOKEN: "${AZURE_STORAGE_SAS_TOKEN}"
-      EXTRA_ARGS: "--exclude-older --preserve-last-modified-time"
-      DEBUG: "true"
+      SOURCE: 'mydirectory'
+      DESTINATION: 'https://mystorageaccount.blob.core.windows.net/mycontainer/mydirectory'
+      DESTINATION_SAS_TOKEN: ${AZURE_STORAGE_SAS_TOKEN}
+      EXTRA_ARGS: '--exclude-older --preserve-last-modified-time'
+      DEBUG: 'true'
 ```
 
 
 ## Support
-If you’d like help with this pipe, or you have an issue or feature request, [let us know on community][community].
+If you’d like help with this pipe, or you have an issue or feature request, [let us know on Community][community].
 
 If you’re reporting an issue, please include:
 
