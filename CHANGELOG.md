@@ -1,6 +1,10 @@
 # Changelog
 Note: version releases in the 0.x.y range may introduce breaking changes.
 
+## 0.5.1
+
+- patch: Standardising README and pipes.yml.
+
 ## 0.5.0
 
 - minor: Switch naming conventions from task to pipes.
