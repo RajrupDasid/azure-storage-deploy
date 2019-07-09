@@ -1,0 +1,4 @@
+{
+  "type": "patch",
+  "description": "Add a deprecation notice to clarify that this pipe will be maintained in the Microsoft account: https://bitbucket.org/microsoft/ ."
+}
