@@ -1,5 +1,7 @@
 # Bitbucket Pipelines Pipe: Azure Storage deploy
 
+### Noted: From February 26th, 2019, This pipe is deprecated and has been moved and maintained by Microsoft in the account: [https://bitbucket.org/microsoft/](https://bitbucket.org/microsoft/).
+
 Pipe to deploy to [Microsoft Azure Storage](https://azure.microsoft.com/services/storage/).
 Copies files and directories to Azure Blob or File storage
 using [AzCopy](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-linux).
