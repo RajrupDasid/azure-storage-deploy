@@ -3,30 +3,27 @@ image:
 
 test: &test
   step:
-    name: Build and Test
+    name: Test
+    image: microsoft/azure-cli:2.0.57
     script:
-    - export DEBUG=true
-    - apt-get update && apt-get install -y bats
-    - export DOCKERHUB_IMAGE="bitbucketpipelines/${BITBUCKET_REPO_SLUG}"
-    - export DOCKERHUB_TAG=${BITBUCKET_BUILD_NUMBER}
-    - echo "Building image..."
-    - docker build -t ${DOCKERHUB_IMAGE}:${DOCKERHUB_TAG} .
-    - echo "Testing image..."
-    - test/test.bats
+    - apk add --update nodejs
+    - apk add --update coreutils
+    - npm install -g bats
+    - chmod a+x test/*.bats
+    - bats test/test.bats
     services:
     - docker
 
 push: &push
   step:
     name: Push and Tag
-    image: python:3.6.7
+    image: python:3.7
     script:
-    - pip install semversioner
-    - ./ci-scripts/git-setup.sh
+    - pip install semversioner==0.7.0
+    - chmod a+x ci-scripts/*.sh
     - ./ci-scripts/bump-version.sh
     - ./ci-scripts/docker-release.sh bitbucketpipelines/$BITBUCKET_REPO_SLUG
-    - ./ci-scripts/git-commit.sh
-    - ./ci-scripts/git-tag.sh
+    - ./ci-scripts/git-push.sh
     services:
     - docker
 
@@ -37,28 +34,3 @@ pipelines:
     master:
     - <<: *test
     - <<: *push
-    qa-*:
-    - <<: *test
-    - <<: *push
-  custom:
-    test-and-report:
-    - step:
-        script:
-        - apt-get update && apt-get install -y bats
-        - export DOCKERHUB_IMAGE="bitbucketpipelines/${BITBUCKET_REPO_SLUG}"
-        - export DOCKERHUB_TAG=${BITBUCKET_BUILD_NUMBER}
-        - echo "Building image..."
-        - docker build -t ${DOCKERHUB_IMAGE}:${DOCKERHUB_TAG} .
-        - echo "Testing image..."
-        - set +e
-        - test/test.bats; test_exit_code=$?
-        - set -e
-        - echo test_exit_code = $test_exit_code
-        - pipe: atlassian/report-task-test-result:1.0.0
-          variables:
-            DATADOG_API_KEY: $DATADOG_API_KEY
-            TASK_NAME: azure-storage-deploy
-            TEST_EXIT_CODE: $test_exit_code
-        - exit $test_exit_code
-        services:
-        - docker

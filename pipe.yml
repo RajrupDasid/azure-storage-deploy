@@ -1,9 +1,15 @@
 name: Azure Storage Deploy
 image: bitbucketpipelines/azure-storage-deploy:0.5.2
-description: Pipe to deploy to Microsoft Azure Storage.
+description: Deploy files and directories to Azure Storage.
+category: Deployment
 repository: https://bitbucket.org/atlassian/azure-storage-deploy
-maintainer: Bitbucket Pipelines team
-icon: https://bitbucket.org/atlassian/azure-storage-deploy/raw/master/logo_azure.svg
+vendor:
+  name: Microsoft
+  website: https://azure.microsoft.com/
+maintainer:
+  name: Atlassian
+  website: https://www.atlassian.com/
 tags:
-- azure
-- storage
+    - azure
+    - storage
+    - deploy

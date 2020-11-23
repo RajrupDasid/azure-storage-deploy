@@ -23,22 +23,26 @@ DESTINATION=${DESTINATION:?'DESTINATION variable missing.'}
 debug SOURCE: "${SOURCE}"
 debug DESTINATION: "${DESTINATION}"
 
-ARGS_STRING="--quiet --source \"${SOURCE}\" --destination \"${DESTINATION}\""
-
-if [[ "${DEBUG}" == "true" ]]; then
-  ARGS_STRING="${ARGS_STRING} --verbose"
-fi
-
-if [ -d "${SOURCE}" ]; then
-  ARGS_STRING="${ARGS_STRING} --recursive"
-fi
+ARGS_STRING="\"${SOURCE}"
 
 if [ ! -z "${SOURCE_SAS_TOKEN}" ]; then
-  ARGS_STRING="${ARGS_STRING} --source-sas \"${SOURCE_SAS_TOKEN}\""
+  ARGS_STRING="${ARGS_STRING}${SOURCE_SAS_TOKEN}"
 fi
 
+ARGS_STRING="${ARGS_STRING}\" \"${DESTINATION}"
+
 if [ ! -z "${DESTINATION_SAS_TOKEN}" ]; then
-  ARGS_STRING="${ARGS_STRING} --dest-sas \"${DESTINATION_SAS_TOKEN}\""
+  ARGS_STRING="${ARGS_STRING}${DESTINATION_SAS_TOKEN}"
+fi
+
+ARGS_STRING="${ARGS_STRING}\""
+
+if [ -d "${SOURCE}" ]; then
+  ARGS_STRING="${ARGS_STRING} --recursive=true"
+fi
+
+if [[ "${DEBUG}" == "true" ]]; then
+  ARGS_STRING="${ARGS_STRING} --log-level=DEBUG"
 fi
 
 ARGS_STRING="${ARGS_STRING} ${EXTRA_ARGS:=""}"
@@ -47,7 +51,7 @@ debug ARGS_STRING: "${ARGS_STRING}"
 
 info "Starting deployment to Azure storage..."
 
-run azcopy ${ARGS_STRING}
+run azcopy cp ${ARGS_STRING}
 
 if [ "${status}" -eq 0 ]; then
   success "Deployment successful."
