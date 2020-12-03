@@ -145,3 +145,32 @@ teardown() {
 }
 
 
+@test "upload content to Static Website Azure Storage" {
+  echo "Enabling static website"
+  STATIC_WEBSITE_ACCOUNT="bbcitestinfra"
+  SAS_TOKEN_EXPIRY=`date -d "30 minutes" '+%Y-%m-%dT%H:%M:%SZ'` # 30 minutes from now
+
+  DESTINATION_SAS_TOKEN="?$(az storage account generate-sas --account-name ${STATIC_WEBSITE_ACCOUNT} --expiry ${SAS_TOKEN_EXPIRY} --permissions aruw --services bfqt --resource-types sco | sed 's/["\t]//g')"
+
+  DESTINATION="https://${STATIC_WEBSITE_ACCOUNT}.blob.core.windows.net/\\$web"
+
+  echo "Run test"
+  run docker run \
+    -e SOURCE="test/static_website/*" \
+    -e DESTINATION="${DESTINATION}" \
+    -e DESTINATION_SAS_TOKEN="${DESTINATION_SAS_TOKEN}" \
+    -e DEBUG="true" \
+    -v $(pwd):$(pwd) \
+    -w $(pwd) \
+    ${DOCKER_IMAGE}:0.1.0
+
+  echo $output
+
+  [[ "${status}" == "0" ]]
+
+  # verify
+  run curl --silent "${DESTINATION}"
+
+  [[ "${status}" == "0" ]]
+  [[ "${output}" == "Pipelines is awesome!" ]]
+}
