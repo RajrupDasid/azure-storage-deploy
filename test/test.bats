@@ -66,6 +66,9 @@ teardown() {
     -w $(pwd) \
     ${DOCKER_IMAGE}:0.1.0
 
+  echo "Status: $status"
+  echo "Output: $output"
+
   [[ "${status}" == "0" ]]
 
   # verify
@@ -91,6 +94,9 @@ teardown() {
     -v $(pwd):$(pwd) \
     -w $(pwd) \
     ${DOCKER_IMAGE}:0.1.0
+
+  echo "Status: $status"
+  echo "Output: $output"
 
   [[ "${status}" == "0" ]]
 
@@ -122,6 +128,8 @@ teardown() {
 
   [[ "${status}" == "0" ]]
 
+  echo "Status: $status"
+  echo "Output: $output"
 
   echo "Run test"
   run docker run \
@@ -133,7 +141,8 @@ teardown() {
     -w $(pwd) \
     ${DOCKER_IMAGE}:0.1.0
 
-  echo $output
+  echo "Status: $status"
+  echo "Output: $output"
 
   [[ "${status}" == "0" ]]
 
@@ -143,5 +152,3 @@ teardown() {
   [[ "${status}" == "0" ]]
   [[ "${output}" == "Pipelines is awesome!" ]]
 }
-
-
