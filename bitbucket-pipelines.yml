@@ -1,35 +1,64 @@
 image:
   name: atlassian/default-image:2
 
-test: &test
+
+release-dev: &release-dev
   step:
-    name: Test
-    image: microsoft/azure-cli:2.0.57
+    name: Release development version
+    trigger: manual
+    image: python:3.7
     script:
-    - apk add --update nodejs
-    - apk add --update coreutils
-    - npm install -g bats
-    - chmod a+x test/*.bats
-    - bats test/test.bats
+      - pip install semversioner
+      - VERSION=$(semversioner current-version).${BITBUCKET_BUILD_NUMBER}-dev
+      - pipe: atlassian/bitbucket-pipe-release:4.0.1
+        variables:
+          DOCKERHUB_USERNAME: $DOCKERHUB_USERNAME
+          DOCKERHUB_PASSWORD: $DOCKERHUB_PASSWORD
+          IMAGE: bitbucketpipelines/$BITBUCKET_REPO_SLUG
+          GIT_PUSH: 'false'
+          VERSION: ${VERSION}
     services:
-    - docker
+      - docker
+
+
+test: &test
+  parallel:
+    - step:
+        name: Test
+        image: microsoft/azure-cli:2.0.57
+        script:
+        - apk add --update nodejs
+        - apk add --update coreutils
+        - npm install -g bats
+        - chmod a+x test/*.bats
+        - bats test/test.bats
+        services:
+        - docker
+    - step:
+        name: Lint the Dockerfile
+        image: hadolint/hadolint:latest-debian
+        script:
+          - hadolint Dockerfile
+
 
 push: &push
   step:
     name: Push and Tag
     image: python:3.7
     script:
-    - pip install semversioner==0.7.0
-    - chmod a+x ci-scripts/*.sh
-    - ./ci-scripts/bump-version.sh
-    - ./ci-scripts/docker-release.sh bitbucketpipelines/$BITBUCKET_REPO_SLUG
-    - ./ci-scripts/git-push.sh
+      - pipe: atlassian/bitbucket-pipe-release:4.0.1
+        variables:
+          DOCKERHUB_USERNAME: $DOCKERHUB_USERNAME
+          DOCKERHUB_PASSWORD: $DOCKERHUB_PASSWORD
+          IMAGE: bitbucketpipelines/$BITBUCKET_REPO_SLUG
     services:
-    - docker
+      - docker
+
 
 pipelines:
   default:
   - <<: *test
+  - <<: *release-dev
   branches:
     master:
     - <<: *test
