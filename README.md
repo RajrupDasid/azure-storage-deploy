@@ -12,7 +12,7 @@ Note: This pipe was forked from https://bitbucket.org/microsoft/azure-storage-de
 Add the following snippet to the script section of your `bitbucket-pipelines.yml` file:
 
 ```yaml
-- pipe: atlassian/azure-storage-deploy:1.0.0
+- pipe: atlassian/azure-storage-deploy:1.0.1
   variables:
     SOURCE: '<string>'
     DESTINATION: '<string>'
@@ -52,7 +52,7 @@ Upload a file to Azure Storage:
 
 ```yaml
 script:
-  - pipe: atlassian/azure-storage-deploy:1.0.0
+  - pipe: atlassian/azure-storage-deploy:1.0.1
     variables:
       SOURCE: 'myfile'
       DESTINATION: 'https://mystorageaccount.blob.core.windows.net/mycontainer/myfile'
@@ -62,7 +62,7 @@ script:
 Upload a directory to Azure Storage:
 ```yaml
 script:
-  - pipe: atlassian/azure-storage-deploy:1.0.0
+  - pipe: atlassian/azure-storage-deploy:1.0.1
     variables:
       SOURCE: 'mydirectory'
       DESTINATION: 'https://mystorageaccount.blob.core.windows.net/mycontainer/'
@@ -75,7 +75,7 @@ script:
 Upload the contents of a directory without copying the containing directory itself:
 ```yaml
 script:
-  - pipe: atlassian/azure-storage-deploy:1.0.0
+  - pipe: atlassian/azure-storage-deploy:1.0.1
     variables:
       SOURCE: 'mydirectory/*'
       DESTINATION: 'https://mystorageaccount.blob.core.windows.net/mycontainer/'
@@ -86,7 +86,7 @@ script:
 Upload a directory and prevent overwrite the conflicting files/blobs at the destination:
 ```yaml
 script:
-  - pipe: atlassian/azure-storage-deploy:1.0.0
+  - pipe: atlassian/azure-storage-deploy:1.0.1
     variables:
       SOURCE: 'mydirectory'
       DESTINATION: 'https://mystorageaccount.blob.core.windows.net/mycontainer/mydirectory'

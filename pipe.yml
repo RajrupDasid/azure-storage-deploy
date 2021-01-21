@@ -1,5 +1,5 @@
 name: Azure Storage Deploy
-image: bitbucketpipelines/azure-storage-deploy:1.0.0
+image: bitbucketpipelines/azure-storage-deploy:1.0.1
 description: Deploy files and directories to Azure Storage.
 category: Deployment
 repository: https://bitbucket.org/atlassian/azure-storage-deploy
