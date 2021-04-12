@@ -72,6 +72,17 @@ script:
 
 ### Advanced example
 
+Upload a directory to Azure Storage with $web param:
+```yaml
+script:
+  - pipe: atlassian/azure-storage-deploy:1.0.1
+    variables:
+      SOURCE: 'mydirectory'
+      DESTINATION: 'https://mystorageaccount.blob.core.windows.net/\\\$web'
+      DESTINATION_SAS_TOKEN: $AZURE_STORAGE_SAS_TOKEN
+```
+
+
 Upload the contents of a directory without copying the containing directory itself:
 ```yaml
 script:
