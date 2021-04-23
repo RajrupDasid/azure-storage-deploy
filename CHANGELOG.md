@@ -1,6 +1,10 @@
 # Changelog
 Note: version releases in the 0.x.y range may introduce breaking changes.
 
+## 1.0.2
+
+- patch: Documentation update: deploying with $web param.
+
 ## 1.0.1
 
 - patch: Internal maintenance: make pipe structure consistent to others.
